@@ -18,5 +18,8 @@
     <type name="Magento\Framework\UrlInterface">
         <plugin name="urlReplace" type="Training\TestOM\Plugin\Url" sortOrder="10"/>
     </type>
+    <type name="Magento\Framework\View\Element\Template">
+        <plugin name="training_test" type="Training\TestOM\Plugin\Block\Template" />
+    </type>
 </config>
 
