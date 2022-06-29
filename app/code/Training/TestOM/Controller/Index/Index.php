@@ -16,17 +16,20 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
      */
 
     private \Training\TestOM\Model\Test $test;
+    private \Training\TestOM\Model\PlayWithTest $playWithTest;
 
     public function __construct(
         Context $context,
-        \Training\TestOM\Model\Test $test
+        \Training\TestOM\Model\Test $test,
+        \Training\TestOM\Model\PlayWithTest $playWithTest
     ) {
         $this->test = $test;
+        $this->playWithTest = $playWithTest;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        return $this->test->log();
+        return $this->playWithTest->run();
     }
 }
