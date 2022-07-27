@@ -6,6 +6,7 @@ use Magento\Framework\DataObject;
 use Magento\Framework\Stdlib\DateTime\Timezone;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Training\Feedback\Model\ResourceModel\Feedback;
 use Training\Feedback\Model\ResourceModel\Feedback\CollectionFactory;
 
 class FeedbackList extends Template
@@ -14,16 +15,19 @@ class FeedbackList extends Template
     private $collectionFactory;
     private $collection;
     private $timezone;
+    private $feedbackResource;
 
     public function __construct(
         Context           $context,
         CollectionFactory $collectionFactory,
         Timezone          $timezone,
+        Feedback          $feedbackResource,
         array             $data = array()
     )
     {
         $this->collectionFactory = $collectionFactory;
         $this->timezone = $timezone;
+        $this->feedbackResource = $feedbackResource;
         parent::__construct($context, $data);
     }
 
@@ -66,5 +70,14 @@ class FeedbackList extends Template
     public function getFeedbackDate($feedback)
     {
         return $this->timezone->formatDateTime($feedback->getCreationTime());
+    }
+
+    public function getAllFeedbackNumber()
+    {
+        return $this->feedbackResource->getAllFeedbackNumber();
+    }
+    public function getActiveFeedbackNumber()
+    {
+        return $this->feedbackResource->getActiveFeedbackNumber();
     }
 }
